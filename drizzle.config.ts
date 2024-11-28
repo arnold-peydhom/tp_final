@@ -13,7 +13,7 @@ export default defineConfig({
     port: configService.get<number>('POSTGRES_PORT') || 5432,
     user: configService.get<string>('POSTGRES_USER') || 'postgres',
     password: configService.get<string>('POSTGRES_PASSWORD') || 'password',
-    database: configService.get<string>('POSTGRES_DB') || 'postgres',
+    database: configService.get<string>('POSTGRES_DB') || 'tpfinal',
     ssl: false,
   },
 });

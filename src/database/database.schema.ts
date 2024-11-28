@@ -20,7 +20,7 @@ export const users = pgTable('users', {
   ...timestamps,
 });
 
-export const actors = pgTable('actors', {
+export const lecteur = pgTable('lecteur', {
   id: text()
     .primaryKey()
     .$defaultFn(() => createId()),
@@ -32,11 +32,11 @@ export const actors = pgTable('actors', {
   ...timestamps,
 });
 
-export const actorsRelations = relations(actors, ({ many }) => ({
-  actorsToFilms: many(actorsToFilms),
+export const lecteurRelations = relations(lecteur, ({ many }) => ({
+  lecteurToLivre: many(lecteurToLivre),
 }));
 
-export const films = pgTable('films', {
+export const livre = pgTable('livre', {
   id: text()
     .primaryKey()
     .$defaultFn(() => createId()),
@@ -47,29 +47,29 @@ export const films = pgTable('films', {
   ...timestamps,
 });
 
-export const filmsRelations = relations(films, ({ many }) => ({
-  actorsToFilms: many(actorsToFilms),
+export const livreRelations = relations(livre, ({ many }) => ({
+  lecteurToLivre: many(lecteurToLivre),
 }));
 
-export const actorsToFilms = pgTable(
-  'actors_to_films', 
+export const lecteurToLivre = pgTable(
+  'lecteurToLivre', 
   {
-    actor_id: text().notNull().references(() => actors.id),
-    film_id: text().notNull().references(() => films.id),
+    lecteur_id: text().notNull().references(() => lecteur.id),
+    livre: text().notNull().references(() => livre.id),
   },
   (t) => ({
-    pk: primaryKey({ columns: [t.actor_id, t.film_id] })
+    pk: primaryKey({ columns: [t.lecteur_id, t.livre_id] })
   })
 );
 
-export const actorsToFilmsRelations = relations(actorsToFilms, ({ one }) => ({
-  actor: one(actors, {
-    fields: [actorsToFilms.actor_id],
-    references: [actors.id],
+export const lecteurToLivreRelations = relations(lecteurToLivre, ({ one }) => ({
+  lecteur: one(lecteur, {
+    fields: [lecteurToLivre.lecteur_id],
+    references: [lecteur.id],
   }),
-  film: one(films, {
-    fields: [actorsToFilms.film_id],
-    references: [films.id],
+  livre: one(livre, {
+    fields: [lecteurToLivre.livre_id],
+    references: [livre.id],
   }),
 }));
 
@@ -77,7 +77,7 @@ export const reviews = pgTable('reviews', {
   id: text()
     .primaryKey()
     .$defaultFn(() => createId()),
-  film_id: text().notNull().references(() => films.id),
+  livre_id: text().notNull().references(() => livre.id),
   user_id: text().notNull().references(() => users.id),
   rating: integer().notNull(),
   comment: text(),
@@ -87,11 +87,11 @@ export const reviews = pgTable('reviews', {
 
 export const dbSchema = {
   users,
-  actors,
-  films,
-  actorsToFilms,
+  lecteur,
+  livre,
+  lecteurToLivre,
   reviews,
-  actorsRelations,
-  filmsRelations,
-  actorsToFilmsRelations,
+  lecteurRelations,
+  livreRelations,
+  lecteurToLivreRelations,
 };

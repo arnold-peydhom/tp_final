@@ -5,7 +5,7 @@ import { DatabaseModule } from "@database/database.module";
 
 import { UsersModule } from "@users/users.module";
 
-import { ActorsModule } from './actors/actors.module';
+import { ActorsModule } from './actors/lecteur.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
@@ -26,7 +26,7 @@ import { ReviewsModule } from './reviews/reviews.module';
         port: configService.get("POSTGRES_PORT") || 5432,
         user: configService.get("POSTGRES_USER") || "postgres",
         password: configService.get("POSTGRES_PASSWORD") || "password",
-        database: configService.get("POSTGRES_DB") || "postgres",
+        database: configService.get("POSTGRES_DB") || "tpfinal",
       }),
     }),
     FilmsModule,

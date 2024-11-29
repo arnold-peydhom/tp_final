@@ -5,11 +5,11 @@ import { DatabaseModule } from "@database/database.module";
 
 import { UsersModule } from "@users/users.module";
 
-import { ActorsModule } from './actors/lecteur.module';
+import { LecteurModule } from "./lecteur/lecteur.module";
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
-import { FilmsModule } from './films/livre.module';
+import { LivreModule } from "./livre/livre.module";
 import { ReviewsModule } from './reviews/reviews.module';
 
 
@@ -29,8 +29,8 @@ import { ReviewsModule } from './reviews/reviews.module';
         database: configService.get("POSTGRES_DB") || "tpfinal",
       }),
     }),
-    FilmsModule,
-    ActorsModule,
+    LivreModule,
+    LecteurModule,
     ReviewsModule,
   ],
   controllers: [

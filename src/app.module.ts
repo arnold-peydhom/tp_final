@@ -9,7 +9,7 @@ import { ActorsModule } from './actors/lecteur.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
-import { FilmsModule } from './films/films.module';
+import { FilmsModule } from './films/livre.module';
 import { ReviewsModule } from './reviews/reviews.module';
 
 
